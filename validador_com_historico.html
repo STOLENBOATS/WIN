@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Validador de WIN</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    input { width: 300px; padding: 10px; font-size: 1em; }
+    button { padding: 10px 20px; margin-left: 10px; font-size: 1em; }
+    .resultado { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Validador de WIN</h1>
+  <input type="text" id="winInput" placeholder="Introduza o número WIN">
+  <button onclick="validarWIN()">Validar</button>
+  <div id="resultado" class="resultado"></div>
+
+  <script>
+    function validarWIN() {
+      const win = document.getElementById("winInput").value.trim();
+      const resultadoDiv = document.getElementById("resultado");
+      let resultado = "";
+      let motivo = "";
+      const dataHora = new Date().toLocaleString();
+      const utilizador = "admin";
+
+      // Simples validação exemplo
+      if (!win || win.length < 14 || win.length > 16) {
+        resultado = "Inválido";
+        motivo = "Número de caracteres inválido";
+        resultadoDiv.textContent = "❌ WIN inválido: " + motivo;
+      } else {
+        resultado = "Válido";
+        motivo = "Estrutura básica correta";
+        resultadoDiv.textContent = "✅ WIN válido: " + motivo;
+      }
+
+      // Guardar no localStorage
+      const historico = JSON.parse(localStorage.getItem("historico_pesquisas")) || [];
+      historico.push({
+        win: win,
+        data: dataHora,
+        utilizador: utilizador,
+        resultado: resultado,
+        motivo: motivo
+      });
+      localStorage.setItem("historico_pesquisas", JSON.stringify(historico));
+    }
+  </script>
+</body>
+</html>
