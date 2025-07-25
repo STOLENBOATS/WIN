@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Validador de WIN</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+    }
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.5em;
+    }
+    main {
+      padding: 40px;
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      font-size: 1em;
+      width: 300px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      margin-left: 10px;
+    }
+    .logout {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #990000;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-size: 1.1em;
+      color: #003366;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    Validador de WIN
+    <button class="logout" onclick="logout()">Terminar Sessão</button>
+  </header>
+  <main>
+    <p>Introduza o WIN:</p>
+    <input id="winInput" type="text" placeholder="Ex: PT-ZOD123T0409">
+    <button onclick="validar()">Validar</button>
+    <div id="resultado"></div>
+  </main>
+
+  <script>
+    function logout() {
+      window.location.href = "index.html";
+    }
+
+    function validar() {
+      const rawInput = document.getElementById("winInput").value;
+      const input = rawInput.toUpperCase().replace(/[^A-Z0-9]/g, "");
+      const output = document.getElementById("resultado");
+
+      if (input.length !== 14 && input.length !== 16) {
+        output.innerHTML = "❌ WIN inválido: deve conter 14 ou 16 caracteres (excluindo hífens).";
+        return;
+      }
+
+      let tipo = input.length === 14 ? "EU" : "EUA";
+      let pais = input.substring(0, 2);
+      let fabricante = input.substring(2, 5);
+      let numeroSerie = tipo === "EU" ? input.substring(5, 10) : input.substring(5, 12);
+      let mes = tipo === "EU" ? input[10] : input[12];
+      let anoProd = tipo === "EU" ? input[11] : input[13];
+      let anoModelo = tipo === "EU" ? input.substring(12, 14) : input.substring(14, 16);
+
+      // Verificação de caracteres proibidos no campo do mês
+      if (["I", "O", "Q"].includes(mes)) {
+        output.innerHTML = "❌ Código inválido: contém I, O ou Q na posição do mês (proibido).";
+        return;
+      }
+
+      output.innerHTML = `
+        ✅ WIN válido (${tipo})<br>
+        País: ${pais}<br>
+        Fabricante: ${fabricante}<br>
+        Nº de série: ${numeroSerie}<br>
+        Mês de produção: ${mes}<br>
+        Ano de produção: ${anoProd}<br>
+        Ano do modelo: ${anoModelo}
+      `;
+    }
+  </script>
+</body>
+</html>
