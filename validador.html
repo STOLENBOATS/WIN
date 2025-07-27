@@ -2,15 +2,50 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Validador WIN</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Validador de WIN</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+    }
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.5em;
+    }
+    .logout {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      background-color: #990000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    main {
+      text-align: center;
+      padding: 40px;
+    }
+  </style>
 </head>
 <body>
-  <button onclick="logout()" class="logout-btn">Sair</button>
-  <h2>Validador de Números de Casco (WIN)</h2>
-  <input type="text" id="winInput" placeholder="Introduz o WIN">
-  <button onclick="validarWIN()">Validar</button>
-  <div id="resultado"></div>
-  <script src="script.js"></script>
+  <header>
+    Validador de WIN
+    <button class="logout" onclick="logout()">Terminar Sessão</button>
+  </header>
+  <main>
+    <p>Página principal da aplicação de validação.</p>
+  </main>
+
+  <script>
+    function logout() {
+      window.location.href = "login.html";
+    }
+  </script>
 </body>
 </html>
