@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -19,8 +18,8 @@
       justify-content: space-between;
     }
     header img {
-      width: 50px;
-      margin-right: 10px;
+      width: 60px;
+      margin-right: 15px;
     }
     main {
       padding: 40px;
@@ -56,33 +55,12 @@
   </header>
 
   <main>
-    <h3>Validação de número de casco</h3>
+    <h3>Validação de Número de Casco (WIN)</h3>
     <input type="text" id="winInput" placeholder="Introduza o WIN (ex: PT-ABC12345E303)">
     <button onclick="validarWIN()">Validar</button>
-    <p id="resultado"></p>
+    <p id="resultado" style="font-weight: bold; margin-top: 20px;"></p>
   </main>
 
-  <script>
-    function logout() {
-      window.location.href = "login.html";
-    }
-
-    function validarWIN() {
-      const input = document.getElementById("winInput").value.trim();
-      const resultado = document.getElementById("resultado");
-
-      if (!input) {
-        resultado.textContent = "Por favor, introduza um número WIN válido.";
-        return;
-      }
-
-      const cleanInput = input.replace("-", "");
-      if (cleanInput.length === 14 || cleanInput.length === 16) {
-        resultado.textContent = "WIN com formato válido.";
-      } else {
-        resultado.textContent = "WIN inválido: número de caracteres incorreto.";
-      }
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
