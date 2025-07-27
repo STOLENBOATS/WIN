@@ -1,4 +1,3 @@
-
 function login() {
   const user = document.getElementById("username").value;
   const pass = document.getElementById("password").value;
@@ -10,7 +9,7 @@ function login() {
 }
 
 function logout() {
-  window.location.href = "index.html";
+  window.location.href = "login.html";
 }
 
 function validarWIN() {
@@ -23,4 +22,15 @@ function validarWIN() {
     result = "✅ Formato base aparentemente correto.";
   }
   document.getElementById("resultado").textContent = result;
+
+  if (cleanWIN) {
+    const historico = JSON.parse(localStorage.getItem("historicoWIN")) || [];
+    const agora = new Date().toLocaleString("pt-PT");
+    historico.push({ data: agora, win: cleanWIN });
+    localStorage.setItem("historicoWIN", JSON.stringify(historico));
+  }
+}
+
+function verHistorico() {
+  window.location.href = "historico.html";
 }
