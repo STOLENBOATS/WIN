@@ -1,120 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Validador de WIN</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 40px;
-      background-color: #f0f8ff;
-    }
-    h1 {
-      color: #003366;
-    }
-    label, input, button {
-      font-size: 1em;
-    }
-    input {
-      width: 300px;
-      padding: 10px;
-      margin: 10px 0;
-    }
-    button {
-      padding: 10px 20px;
-      background-color: #003366;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .resultado {
-      margin-top: 20px;
-      font-weight: bold;
-    }
-    .erro {
-      color: red;
-    }
-    .valido {
-      color: green;
-    }
-    .logout {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      padding: 6px 12px;
-      background-color: #990000;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-  </style>
+  <title>Validador WIN</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <button class="logout" onclick="logout()">Sair</button>
-  <h1>Validador de WIN (Hull Identification Number)</h1>
-  <label for="win">Introduza o WIN:</label><br>
-  <input type="text" id="win" placeholder="Ex: PT-ABC12345L122"><br>
+  <button onclick="logout()" class="logout-btn">Sair</button>
+  <h2>Validador de Números de Casco (WIN)</h2>
+  <input type="text" id="winInput" placeholder="Introduz o WIN">
   <button onclick="validarWIN()">Validar</button>
-  <div id="resultado" class="resultado"></div>
-
-  <script>
-    function logout() {
-      window.location.href = "login.html";
-    }
-
-    function validarWIN() {
-      const winInput = document.getElementById("win").value.trim().toUpperCase();
-      const resultadoDiv = document.getElementById("resultado");
-
-      const win = winInput.replace(/-/g, "");  // remover hífens
-      const length = win.length;
-
-      if (length !== 14 && length !== 16) {
-        resultadoDiv.innerHTML = "❌ Número de caracteres inválido.";
-        resultadoDiv.className = "resultado erro";
-        return;
-      }
-
-      const pais = win.slice(0, 2);
-      const fabricante = win.slice(2, 5);
-      const mes = win.charAt(length === 14 ? 10 : 12);
-      const anoProd = win.charAt(length === 14 ? 11 : 13);
-      const anoModelo = win.slice(length === 14 ? 12 : 14);
-
-      const letrasInvalidas = ["I", "O", "Q"];
-      if (!/^[A-Z]{2}$/.test(pais)) {
-        resultadoDiv.innerHTML = "❌ Código de país inválido.";
-        resultadoDiv.className = "resultado erro";
-        return;
-      }
-      if (!/^[A-Z]{3}$/.test(fabricante)) {
-        resultadoDiv.innerHTML = "❌ Código de fabricante inválido.";
-        resultadoDiv.className = "resultado erro";
-        return;
-      }
-      if (letrasInvalidas.includes(mes)) {
-        resultadoDiv.innerHTML = "❌ Código inválido: contém I, O ou Q no mês de fabrico.";
-        resultadoDiv.className = "resultado erro";
-        return;
-      }
-      if (!/^[0-9]$/.test(anoProd)) {
-        resultadoDiv.innerHTML = "❌ Ano de produção deve ser um dígito.";
-        resultadoDiv.className = "resultado erro";
-        return;
-      }
-      if (!/^[0-9]{2}$/.test(anoModelo)) {
-        resultadoDiv.innerHTML = "❌ Ano do modelo inválido.";
-        resultadoDiv.className = "resultado erro";
-        return;
-      }
-
-      resultadoDiv.innerHTML = "✅ WIN válido. País: " + pais + ", Fabricante: " + fabricante +
-        ", Mês: " + mes + ", Ano Produção: " + anoProd + ", Ano Modelo: " + anoModelo;
-      resultadoDiv.className = "resultado valido";
-    }
-  </script>
+  <div id="resultado"></div>
+  <script src="script.js"></script>
 </body>
 </html>
