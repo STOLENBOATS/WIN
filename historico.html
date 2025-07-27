@@ -55,7 +55,7 @@
 <body>
   <header>
     <div class="header-left">
-      <img src="logo_pm.png" alt="PM Logo">
+      <img src="logo_pm.png" alt="Logo da Polícia Marítima">
       <h2 style="margin: 0;">Histórico de WIN</h2>
     </div>
     <button class="logout-btn" onclick="logout()">Terminar Sessão</button>
@@ -64,7 +64,7 @@
     <h3>Registos anteriores</h3>
     <table id="historicoTable">
       <thead>
-        <tr><th>Data</th><th>Número WIN</th></tr>
+        <tr><th>Data</th><th>WIN / HIN / N.º CASCO</th></tr>
       </thead>
       <tbody></tbody>
     </table>
@@ -73,15 +73,23 @@
     function logout() {
       window.location.href = "login.html";
     }
+
     function carregarHistorico() {
       const tabela = document.querySelector("#historicoTable tbody");
       const historico = JSON.parse(localStorage.getItem("historicoWIN")) || [];
-      historico.reverse().forEach(registo => {
+      if (historico.length === 0) {
         const linha = document.createElement("tr");
-        linha.innerHTML = `<td>${registo.data}</td><td>${registo.win}</td>`;
+        linha.innerHTML = "<td colspan='2'>Sem registos disponíveis</td>";
         tabela.appendChild(linha);
-      });
+      } else {
+        historico.reverse().forEach(registo => {
+          const linha = document.createElement("tr");
+          linha.innerHTML = `<td>${registo.data}</td><td>${registo.win}</td>`;
+          tabela.appendChild(linha);
+        });
+      }
     }
+
     carregarHistorico();
   </script>
 </body>
