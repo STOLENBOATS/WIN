@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -19,13 +20,6 @@
       border-radius: 12px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
       text-align: center;
-      position: relative;
-    }
-    .logo {
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      width: 60px;
     }
     h2 {
       margin-bottom: 20px;
@@ -53,11 +47,17 @@
       color: red;
       margin-top: 10px;
     }
+    .logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 60px;
+    }
   </style>
 </head>
 <body>
+  <img src="logo_pm.png" class="logo" alt="Logo PM">
   <div class="login-box">
-    <img src="logo_pm.png" class="logo" alt="Logotipo Polícia Marítima">
     <h2>Acesso Restrito</h2>
     <input type="text" id="username" placeholder="Utilizador">
     <input type="password" id="password" placeholder="Palavra-passe">

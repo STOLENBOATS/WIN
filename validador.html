@@ -1,50 +1,87 @@
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Validador de WIN</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
       margin: 0;
+      background-color: #f4f4f4;
     }
     header {
       background-color: #003366;
       color: white;
       padding: 20px;
-      text-align: center;
-      font-size: 1.5em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    .logout {
-      position: absolute;
-      top: 20px;
-      right: 20px;
+    header img {
+      width: 50px;
+      margin-right: 10px;
+    }
+    main {
+      padding: 40px;
+      text-align: center;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 300px;
+      font-size: 1em;
+    }
+    button {
       padding: 10px 15px;
+      font-size: 1em;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    .logout-btn {
       background-color: #990000;
       color: white;
       border: none;
+      padding: 10px 15px;
       border-radius: 5px;
-      cursor: pointer;
-    }
-    main {
-      text-align: center;
-      padding: 40px;
     }
   </style>
 </head>
 <body>
   <header>
-    Validador de WIN
-    <button class="logout" onclick="logout()">Terminar Sessão</button>
+    <div style="display: flex; align-items: center;">
+      <img src="logo_pm.png" alt="PM Logo">
+      <h2 style="margin: 0;">Validador de WIN</h2>
+    </div>
+    <button class="logout-btn" onclick="logout()">Terminar Sessão</button>
   </header>
+
   <main>
-    <p>Página principal da aplicação de validação.</p>
+    <h3>Validação de número de casco</h3>
+    <input type="text" id="winInput" placeholder="Introduza o WIN (ex: PT-ABC12345E303)">
+    <button onclick="validarWIN()">Validar</button>
+    <p id="resultado"></p>
   </main>
 
   <script>
     function logout() {
       window.location.href = "login.html";
+    }
+
+    function validarWIN() {
+      const input = document.getElementById("winInput").value.trim();
+      const resultado = document.getElementById("resultado");
+
+      if (!input) {
+        resultado.textContent = "Por favor, introduza um número WIN válido.";
+        return;
+      }
+
+      const cleanInput = input.replace("-", "");
+      if (cleanInput.length === 14 || cleanInput.length === 16) {
+        resultado.textContent = "WIN com formato válido.";
+      } else {
+        resultado.textContent = "WIN inválido: número de caracteres incorreto.";
+      }
     }
   </script>
 </body>
