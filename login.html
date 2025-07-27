@@ -5,33 +5,36 @@
   <title>Login - Validador de WIN</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
+      font-family: Arial, sans-serif;
       background-color: #f4f4f4;
-    }
-    header {
-      background-color: #003366;
-      color: white;
-      padding: 20px;
+      height: 100vh;
       display: flex;
       align-items: center;
-    }
-    header img {
-      width: 60px;
-      margin-right: 15px;
-    }
-    main {
-      display: flex;
       justify-content: center;
-      align-items: center;
-      height: 70vh;
+      position: relative;
+    }
+    .watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.05;
+      width: 500px;
+      z-index: 0;
     }
     .login-box {
-      background-color: rgba(255, 255, 255, 0.95);
+      position: relative;
+      z-index: 1;
+      background-color: rgba(255, 255, 255, 0.9);
       padding: 40px;
       border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
       text-align: center;
+    }
+    .login-box h2 {
+      color: #003366;
+      margin-bottom: 20px;
     }
     input {
       width: 100%;
@@ -58,18 +61,14 @@
   </style>
 </head>
 <body>
-  <header>
-    <img src="logo_pm.png" alt="Logo da Polícia Marítima">
+  <img src="logo_pm.png" class="watermark" alt="Marca de Água PM">
+  <div class="login-box">
     <h2>Validador de WIN</h2>
-  </header>
-  <main>
-    <div class="login-box">
-      <input type="text" id="username" placeholder="Utilizador">
-      <input type="password" id="password" placeholder="Palavra-passe">
-      <button onclick="login()">Entrar</button>
-      <div id="error" class="error"></div>
-    </div>
-  </main>
+    <input type="text" id="username" placeholder="Utilizador">
+    <input type="password" id="password" placeholder="Palavra-passe">
+    <button onclick="login()">Entrar</button>
+    <div id="error" class="error"></div>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
