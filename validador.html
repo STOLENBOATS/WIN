@@ -1,1 +1,25 @@
-VALIDADOR PLACEHOLDER
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Validador de WIN</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header>
+    <img src="logo_pm.png" class="logo" alt="Logotipo Polícia Marítima">
+    <h1>Validador de WIN</h1>
+    <nav>
+      <a href="historico.html" class="btn">Histórico</a>
+      <a href="login.html" class="btn red">Terminar Sessão</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Validação de Número de Casco (WIN)</h2>
+    <input type="text" id="winInput" placeholder="Introduza o WIN (ex: PT-ABC12345E303)">
+    <button onclick="validarWIN()">Validar</button>
+    <div id="resultado" class="resultado"></div>
+  </main>
+</body>
+</html>

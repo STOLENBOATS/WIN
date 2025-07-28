@@ -1,1 +1,60 @@
-/* style placeholder */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+}
+.login-page {
+  background-image: url('logo_pm.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+}
+.login-box {
+  opacity: 0.8;
+  background: #ffffff;
+  width: 300px;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+.logo {
+  height: 60px;
+  margin: 10px;
+}
+header {
+  background-color: #003366;
+  color: white;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav .btn {
+  background-color: #0055a5;
+  color: white;
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+nav .btn.red {
+  background-color: darkred;
+}
+.resultado {
+  margin-top: 20px;
+  font-weight: bold;
+}
+.resultado.ok {
+  color: green;
+  animation: fadeIn 1s;
+}
+.resultado.erro {
+  color: red;
+  animation: shake 0.3s;
+}
+@keyframes shake {
+  0% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}

@@ -3,72 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Login - Validador de WIN</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    .watermark {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 0.05;
-      width: 500px;
-      z-index: 0;
-    }
-    .login-box {
-      position: relative;
-      z-index: 1;
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      text-align: center;
-    }
-    .login-box h2 {
-      color: #003366;
-      margin-bottom: 20px;
-    }
-    input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1em;
-    }
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #003366;
-      color: white;
-      font-size: 1em;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .error {
-      color: red;
-      margin-top: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <img src="logo_pm.png" class="watermark" alt="Marca de Água PM">
+<body class="login-page">
+  <div class="watermark"></div>
   <div class="login-box">
     <h2>Validador de WIN</h2>
-    <input type="text" id="username" placeholder="Utilizador">
-    <input type="password" id="password" placeholder="Palavra-passe">
-    <button onclick="login()">Entrar</button>
-    <div id="error" class="error"></div>
+    <form>
+      <input type="text" placeholder="Utilizador"><br>
+      <input type="password" placeholder="Palavra-passe"><br>
+      <button type="submit">Entrar</button>
+    </form>
   </div>
-  <script src="script.js"></script>
 </body>
 </html>
