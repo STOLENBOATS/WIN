@@ -1,27 +1,31 @@
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8">
   <title>Histórico de WIN</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <h1>Histórico de WIN</h1>
     <nav>
       <a href="validador.html">Validador</a>
-      <button onclick="logout()">Terminar Sessão</button>
+      <a href="login.html">Terminar Sessão</a>
     </nav>
   </header>
   <main>
-    <table id="tabelaHistorico">
+    <h2>Registos anteriores</h2>
+    <table class="win-table">
       <thead>
-        <tr><th>Data</th><th>WIN</th><th>Resultado</th><th>Justificação</th></tr>
+        <tr>
+          <th>Data</th>
+          <th>WIN</th>
+          <th>Resultado</th>
+          <th>Justificação</th>
+        </tr>
       </thead>
-      <tbody></tbody>
+      <tbody id="historicoBody"></tbody>
     </table>
-    <button onclick="exportarHistorico()">Exportar JSON</button>
   </main>
   <script src="script.js"></script>
 </body>

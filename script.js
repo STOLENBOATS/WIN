@@ -1,39 +1,29 @@
+document.getElementById('winForm')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const winInput = document.getElementById('winInput').value.trim().toUpperCase();
+  const resultDiv = document.getElementById('resultadoValidacao');
+  const detailDiv = document.getElementById('detalhesValidacao');
+  resultDiv.innerHTML = '';
+  detailDiv.innerHTML = '';
 
-function logout() {
-  localStorage.removeItem("user");
-  window.location.href = "login.html";
-}
+  if (winInput.length < 14 || winInput.length > 16 || winInput.length === 15) {
+    resultDiv.innerHTML = '<span style="color:red;">Formato inválido: Deve conter 14 ou 16 caracteres válidos</span>';
+    return;
+  }
 
-function validarWIN() {
-  const input = document.getElementById("winInput").value;
-  const resultadoDiv = document.getElementById("resultado");
-  let valido = input.length >= 14 && input.length <= 16; // Simplificação
-  let just = valido ? "Formato reconhecido." : "Formato inválido.";
-  resultadoDiv.innerHTML = `<p style="color:${valido ? 'green' : 'red'}">${just}</p>`;
+  const valid = /^[A-Z]{2}-?[A-Z]{3}[A-Z0-9]{5,7}[A-HJ-NPR-Z][0-9][0-9]{2}$/.test(winInput.replace(/-/g, ''));
 
-  const historico = JSON.parse(localStorage.getItem("historico") || "[]");
-  historico.unshift({ data: new Date().toLocaleString(), win: input, resultado: valido ? "Válido" : "Inválido", justificacao: just });
-  localStorage.setItem("historico", JSON.stringify(historico));
-}
-
-function carregarHistorico() {
-  const tbody = document.querySelector("#tabelaHistorico tbody");
-  const historico = JSON.parse(localStorage.getItem("historico") || "[]");
-  tbody.innerHTML = "";
-  historico.forEach(reg => {
-    let linha = `<tr><td>${reg.data}</td><td>${reg.win}</td><td>${reg.resultado}</td><td>${reg.justificacao}</td></tr>`;
-    tbody.innerHTML += linha;
-  });
-}
-
-function exportarHistorico() {
-  const historico = localStorage.getItem("historico");
-  const blob = new Blob([historico], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "historico_win.json";
-  a.click();
-}
-
-if (location.pathname.includes("historico.html")) carregarHistorico();
+  if (!valid) {
+    resultDiv.innerHTML = '<span style="color:red;">Formato inválido</span>';
+  } else {
+    resultDiv.innerHTML = '<span style="color:green;">Válido</span>';
+    detailDiv.innerHTML = '<ul>' +
+      '<li><strong>País:</strong> ' + winInput.substring(0, 2) + '</li>' +
+      '<li><strong>Fabricante:</strong> ' + winInput.substring(3, 6) + '</li>' +
+      '<li><strong>Série:</strong> ' + winInput.substring(6, 11) + '</li>' +
+      '<li><strong>Mês:</strong> ' + winInput.charAt(11) + '</li>' +
+      '<li><strong>Ano Produção:</strong> ' + winInput.charAt(12) + '</li>' +
+      '<li><strong>Ano Modelo:</strong> ' + winInput.substring(13) + '</li>' +
+      '</ul>';
+  }
+});
