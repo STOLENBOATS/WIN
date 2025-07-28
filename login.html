@@ -1,19 +1,39 @@
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <title>Login - Validador de WIN</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Validador WIN</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header class="main-header">
-        <h1>Validador de WIN</h1>
-    </header>
-    <div class="login-box fade-in">
-        <h2>Iniciar Sessão</h2>
-        <input type="text" placeholder="Utilizador" class="input-field">
-        <input type="password" placeholder="Palavra-passe" class="input-field">
-        <button class="btn" onclick="window.location.href='validador.html'">Entrar</button>
+  <header>
+    <h1>Validador de WIN</h1>
+    <nav>
+      <a href="validador.html">Validador</a>
+    </nav>
+  </header>
+  <main>
+    <div class="login-box">
+      <h2>Iniciar Sessão</h2>
+      <input type="text" id="username" placeholder="Utilizador"/>
+      <input type="password" id="password" placeholder="Palavra-passe"/>
+      <button onclick="login()">Entrar</button>
     </div>
+  </main>
+  <script>
+    function login() {
+      // Apenas um exemplo simples de login
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+      if (user && pass) {
+        localStorage.setItem("user", user);
+        window.location.href = "validador.html";
+      } else {
+        alert("Preencha todos os campos!");
+      }
+    }
+  </script>
 </body>
 </html>

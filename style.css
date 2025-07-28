@@ -1,77 +1,45 @@
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f6f6f6;
-    margin: 0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
 }
-.main-header {
-    background-color: #003366;
-    color: white;
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+header {
+  background-color: #003366;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-h1 {
-    margin: 0;
+nav a, nav button {
+  margin-left: 10px;
+  background-color: #0055aa;
+  color: white;
+  padding: 6px 12px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
 }
-.container, .login-box {
-    background-color: white;
-    margin: 2rem auto;
-    padding: 2rem;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 600px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+main {
+  padding: 20px;
 }
-.input-field {
-    display: block;
-    width: 100%;
-    padding: 0.8rem;
-    margin: 0.8rem 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    transition: border-color 0.3s ease;
+.login-box {
+  max-width: 300px;
+  margin: 0 auto;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 0 10px gray;
 }
-.input-field:focus {
-    border-color: #003366;
-    outline: none;
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
-.btn {
-    background-color: #0066cc;
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 0.5rem 0;
-    transition: background-color 0.3s ease;
+th, td {
+  padding: 8px;
+  border: 1px solid #ccc;
 }
-.btn:hover {
-    background-color: #004999;
-}
-.btn.red {
-    background-color: #cc0000;
-}
-.btn.red:hover {
-    background-color: #990000;
-}
-.fade-in {
-    animation: fadeIn 1s ease-in;
-}
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-.mensagem {
-    margin-top: 1rem;
-    font-weight: bold;
-}
-.detalhes-box {
-    margin-top: 1rem;
-    background-color: #eaf4ff;
-    border-left: 5px solid #0066cc;
-    padding: 1rem;
-    border-radius: 5px;
+th {
+  background-color: #0055aa;
+  color: white;
 }

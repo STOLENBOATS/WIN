@@ -1,34 +1,39 @@
 
-function validarWIN() {
-    const win = document.getElementById("winInput").value;
-    const resultado = document.getElementById("resultado");
-    const detalhes = document.getElementById("detalhes");
-
-    if (win === "FR-CNBZA135A612") {
-        resultado.textContent = "✅ WIN Válido!";
-        resultado.style.color = "green";
-        detalhes.innerHTML = `
-            <ul>
-                <li><strong>FR</strong> - França</li>
-                <li><strong>CNB</strong> - CNB Yacht Builder</li>
-                <li><strong>ZA135</strong> - Número de série</li>
-                <li><strong>A</strong> - Janeiro</li>
-                <li><strong>6</strong> - Ano de produção: 2006</li>
-                <li><strong>12</strong> - Ano modelo: 2012</li>
-            </ul>
-        `;
-    } else {
-        resultado.textContent = "❌ Formato inválido: Deve seguir o padrão XX-XXX#####X##";
-        resultado.style.color = "red";
-        detalhes.innerHTML = "";
-    }
+function logout() {
+  localStorage.removeItem("user");
+  window.location.href = "login.html";
 }
 
-window.onload = () => {
-    const tbody = document.querySelector("tbody");
-    if (tbody) {
-        tbody.innerHTML = `
-            <tr><td>28/07/2025</td><td>FR-CNBZA135A612</td><td>Válido</td><td>Verificado com sucesso</td><td>(reservado)</td></tr>
-        `;
-    }
-};
+function validarWIN() {
+  const input = document.getElementById("winInput").value;
+  const resultadoDiv = document.getElementById("resultado");
+  let valido = input.length >= 14 && input.length <= 16; // Simplificação
+  let just = valido ? "Formato reconhecido." : "Formato inválido.";
+  resultadoDiv.innerHTML = `<p style="color:${valido ? 'green' : 'red'}">${just}</p>`;
+
+  const historico = JSON.parse(localStorage.getItem("historico") || "[]");
+  historico.unshift({ data: new Date().toLocaleString(), win: input, resultado: valido ? "Válido" : "Inválido", justificacao: just });
+  localStorage.setItem("historico", JSON.stringify(historico));
+}
+
+function carregarHistorico() {
+  const tbody = document.querySelector("#tabelaHistorico tbody");
+  const historico = JSON.parse(localStorage.getItem("historico") || "[]");
+  tbody.innerHTML = "";
+  historico.forEach(reg => {
+    let linha = `<tr><td>${reg.data}</td><td>${reg.win}</td><td>${reg.resultado}</td><td>${reg.justificacao}</td></tr>`;
+    tbody.innerHTML += linha;
+  });
+}
+
+function exportarHistorico() {
+  const historico = localStorage.getItem("historico");
+  const blob = new Blob([historico], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "historico_win.json";
+  a.click();
+}
+
+if (location.pathname.includes("historico.html")) carregarHistorico();

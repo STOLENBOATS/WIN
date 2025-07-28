@@ -1,27 +1,25 @@
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <title>Validador de WIN</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
+  <meta charset="UTF-8"/>
+  <title>Validador WIN</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <header class="main-header">
-        <h1>Validador de WIN</h1>
-        <nav>
-            <button onclick="window.location.href='historico.html'" class="btn">Histórico</button>
-            <button onclick="window.location.href='login.html'" class="btn red">Terminar Sessão</button>
-        </nav>
-    </header>
-    <main>
-        <div class="container fade-in">
-            <h2>Validação de Número de Casco (WIN)</h2>
-            <input type="text" id="winInput" placeholder="Introduza o número WIN" class="input-field">
-            <button onclick="validarWIN()" class="btn">Validar</button>
-            <div id="resultado" class="mensagem"></div>
-            <div id="detalhes" class="detalhes-box"></div>
-        </div>
-    </main>
+  <header>
+    <h1>Validador de WIN</h1>
+    <nav>
+      <a href="historico.html">Histórico</a>
+      <button onclick="logout()">Terminar Sessão</button>
+    </nav>
+  </header>
+  <main>
+    <h2>Validação de Número de Casco (WIN)</h2>
+    <input id="winInput" type="text" placeholder="Insira o número WIN"/>
+    <button onclick="validarWIN()">Validar</button>
+    <div id="resultado"></div>
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>
