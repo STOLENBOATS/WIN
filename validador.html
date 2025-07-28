@@ -1,23 +1,27 @@
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <title>Validador de WIN</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
-    <header>
+    <header class="main-header">
         <h1>Validador de WIN</h1>
-        <button onclick="window.location.href='historico.html'">Histórico</button>
-        <button onclick="window.location.href='login.html'">Terminar Sessão</button>
+        <nav>
+            <button onclick="window.location.href='historico.html'" class="btn">Histórico</button>
+            <button onclick="window.location.href='login.html'" class="btn red">Terminar Sessão</button>
+        </nav>
     </header>
     <main>
-        <label for="winInput">Validação de Número de Casco (WIN)</label><br>
-        <input type="text" id="winInput" placeholder="NL-AQW66019D414">
-        <button onclick="validarWIN()">Validar</button>
-        <p id="mensagemValidacao"></p>
+        <div class="container fade-in">
+            <h2>Validação de Número de Casco (WIN)</h2>
+            <input type="text" id="winInput" placeholder="Introduza o número WIN" class="input-field">
+            <button onclick="validarWIN()" class="btn">Validar</button>
+            <div id="resultado" class="mensagem"></div>
+            <div id="detalhes" class="detalhes-box"></div>
+        </div>
     </main>
-    <script src="js/script.js"></script>
 </body>
 </html>

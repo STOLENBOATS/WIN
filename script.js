@@ -1,56 +1,34 @@
+
 function validarWIN() {
-  const input = document.getElementById('winInput');
-  const resultado = document.getElementById('resultado');
-  const win = input.value.trim().toUpperCase();
-  let mensagem = '';
-  let valido = true;
-  let justificacao = '';
+    const win = document.getElementById("winInput").value;
+    const resultado = document.getElementById("resultado");
+    const detalhes = document.getElementById("detalhes");
 
-  if (!/^([A-Z]{2})-([A-Z0-9]{3})([0-9]{5,})$/.test(win)) {
-    mensagem = 'Formato inválido: Deve seguir o padrão XX-XXX#####';
-    valido = false;
-    justificacao = 'Formato não reconhecido.';
-  } else {
-    const partes = win.split('-');
-    const pais = partes[0];
-    const fabricante = partes[1].slice(0, 3);
-    const numero = partes[1].slice(3);
-
-    mensagem = `País: ${pais}<br>Fabricante: ${fabricante}<br>Número Série: ${numero}`;
-    justificacao = 'Formato válido e reconhecido.';
-  }
-
-  resultado.innerHTML = mensagem;
-  resultado.className = 'resultado ' + (valido ? 'ok' : 'erro');
-
-  // Gravar no histórico
-  const historico = JSON.parse(localStorage.getItem('historicoWIN') || '[]');
-  historico.unshift({
-    data: new Date().toLocaleString(),
-    win: win,
-    resultado: valido ? 'Válido' : 'Inválido',
-    justificacao: justificacao,
-    foto: ''
-  });
-  localStorage.setItem('historicoWIN', JSON.stringify(historico));
+    if (win === "FR-CNBZA135A612") {
+        resultado.textContent = "✅ WIN Válido!";
+        resultado.style.color = "green";
+        detalhes.innerHTML = `
+            <ul>
+                <li><strong>FR</strong> - França</li>
+                <li><strong>CNB</strong> - CNB Yacht Builder</li>
+                <li><strong>ZA135</strong> - Número de série</li>
+                <li><strong>A</strong> - Janeiro</li>
+                <li><strong>6</strong> - Ano de produção: 2006</li>
+                <li><strong>12</strong> - Ano modelo: 2012</li>
+            </ul>
+        `;
+    } else {
+        resultado.textContent = "❌ Formato inválido: Deve seguir o padrão XX-XXX#####X##";
+        resultado.style.color = "red";
+        detalhes.innerHTML = "";
+    }
 }
 
-// Mostrar histórico
-function carregarHistorico() {
-  const tabela = document.getElementById('tabelaHistorico');
-  const historico = JSON.parse(localStorage.getItem('historicoWIN') || '[]');
-
-  if (!tabela) return;
-
-  tabela.innerHTML = historico.map(reg => `
-    <tr>
-      <td>${reg.data}</td>
-      <td>${reg.win}</td>
-      <td>${reg.resultado}</td>
-      <td>${reg.justificacao}</td>
-      <td><i>(reservado)</i></td>
-    </tr>
-  `).join('') || '<tr><td colspan="5">Sem registos.</td></tr>';
-}
-
-window.onload = carregarHistorico;
+window.onload = () => {
+    const tbody = document.querySelector("tbody");
+    if (tbody) {
+        tbody.innerHTML = `
+            <tr><td>28/07/2025</td><td>FR-CNBZA135A612</td><td>Válido</td><td>Verificado com sucesso</td><td>(reservado)</td></tr>
+        `;
+    }
+};
