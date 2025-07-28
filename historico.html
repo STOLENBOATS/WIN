@@ -1,36 +1,33 @@
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <title>Histórico de WIN</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
+    <meta charset="UTF-8">
+    <title>Histórico de WIN</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <img src="logo_pm.png" class="logo" alt="Logotipo Polícia Marítima">
-    <h1>Histórico de WIN</h1>
-    <nav>
-      <a href="validador.html" class="btn">Validador</a>
-      <a href="login.html" class="btn red">Terminar Sessão</a>
-    </nav>
-  </header>
-  <main>
-    <h2>Registos anteriores</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Data</th>
-          <th>WIN / HIN / N.º CASCO</th>
-          <th>Resultado</th>
-          <th>Justificação</th>
-          <th>Foto</th>
-        </tr>
-      </thead>
-      <tbody id="tabelaHistorico">
-        <tr><td colspan="5">A carregar...</td></tr>
-      </tbody>
-    </table>
-  </main>
+    <header>
+        <h1>Histórico de WIN</h1>
+        <button onclick="window.location.href='validador.html'">Validador</button>
+        <button onclick="window.location.href='login.html'">Terminar Sessão</button>
+    </header>
+    <main>
+        <h2>Registos anteriores</h2>
+        <table id="tabelaHistorico">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>WIN / HIN / N.º CASCO</th>
+                    <th>Resultado</th>
+                    <th>Justificação</th>
+                    <th>Foto</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </main>
+    <script src="js/script.js"></script>
 </body>
 </html>
