@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Utilizador</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-protected="true">
+    <header class="header">
+        <div class="logo">WIN Validator</div>
+        <nav>
+            <button id="logoutButton">Sair</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2>Alterar Palavra-passe</h2>
+        <form id="changePasswordForm" class="form-box">
+            <label for="currentPassword">Password atual:</label>
+            <input type="password" id="currentPassword" required>
+
+            <label for="newPassword">Nova password:</label>
+            <input type="password" id="newPassword" required>
+
+            <button type="submit">Alterar</button>
+        </form>
+        <p id="passwordChangeMessage" class="message"></p>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("changePasswordForm");
+            const message = document.getElementById("passwordChangeMessage");
+
+            const users = {
+                "admin": "Admin2025",
+                "ricardo": "R1c4rd0!"
+            };
+
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                const currentPassword = document.getElementById("currentPassword").value;
+                const newPassword = document.getElementById("newPassword").value;
+                const username = localStorage.getItem("username");
+
+                if (!users[username]) {
+                    message.textContent = "Utilizador não encontrado.";
+                    return;
+                }
+
+                if (users[username] !== currentPassword) {
+                    message.textContent = "Password atual incorreta.";
+                    return;
+                }
+
+                // Simula alteração da password (apenas feedback, não persistente)
+                message.textContent = "Password alterada com sucesso (simulado).";
+                message.style.color = "green";
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
