@@ -1,27 +1,154 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <title>Validador de WIN</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Validador Marítimo</title>
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      position: relative;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      background-color: #003366;
+      padding: 10px 20px;
+    }
+
+    header img {
+      height: 50px;
+    }
+
+    .watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.05;
+      max-width: 60%;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      padding: 30px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1 {
+      color: #003366;
+      margin-bottom: 10px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0 20px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #003366;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005599;
+    }
+
+    .resultado {
+      margin-top: 10px;
+      padding: 15px;
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .footer-buttons {
+      margin-top: 30px;
+    }
+
+    .footer-buttons a {
+      margin-right: 10px;
+      text-decoration: none;
+      background-color: #ccc;
+      padding: 8px 12px;
+      border-radius: 5px;
+      color: #003366;
+      font-weight: bold;
+    }
+
+    .footer-buttons a:hover {
+      background-color: #bbb;
+    }
+  </style>
 </head>
 <body>
+  <!-- Cabeçalho com logotipo -->
   <header>
-    <h1>Validador de WIN</h1>
-    <nav>
-      <a href="historico.html">Histórico</a>
-      <a href="login.html">Terminar Sessão</a>
-    </nav>
+    <img src="img/logo_pm.png" alt="Logotipo Polícia Marítima">
   </header>
-  <main class="validador-container">
-    <h2>Validação de Número de Casco (WIN)</h2>
-    <form id="winForm" class="styled-form">
-      <input type="text" id="winInput" placeholder="Insira o número WIN" required>
-      <button type="submit">Validar</button>
-    </form>
-    <div id="resultadoValidacao" class="resultado"></div>
-    <div id="detalhesValidacao" class="detalhes"></div>
-  </main>
-  <script src="script.js"></script>
+
+  <!-- Marca de água -->
+  <img src="img/logo_pm.png" alt="Marca de água Polícia Marítima" class="watermark" />
+
+  <!-- Conteúdo principal -->
+  <div class="container">
+
+    <!-- Validador WIN -->
+    <h1>Validador de Número WIN</h1>
+    <label for="winInput">Introduza o número WIN:</label>
+    <input type="text" id="winInput" placeholder="Ex: FR-CNBZA135A612">
+    <button onclick="validarWIN()">Validar WIN</button>
+    <div id="resultadoWIN" class="resultado"></div>
+
+    <hr style="margin: 40px 0; border: 1px solid #ccc;">
+
+    <!-- Validador de Motor -->
+    <h1>Validador de Número de Motor</h1>
+    <label for="marcaMotor">Marca do Motor:</label>
+    <select id="marcaMotor">
+      <option value="">-- Selecione a marca --</option>
+      <option value="yamaha">Yamaha</option>
+      <option value="honda">Honda</option>
+    </select>
+
+    <label for="motorInput">Número de Série do Motor:</label>
+    <input type="text" id="motorInput" placeholder="Ex: 6ML N 1005843">
+    <button onclick="validarMotor()">Validar Motor</button>
+    <div id="resultadoMotor" class="resultado"></div>
+
+    <div class="footer-buttons">
+      <a href="historico_win.html">📜 Histórico WIN</a>
+      <a href="historico_motor.html">🔧 Histórico Motor</a>
+      <a href="login.html">🔒 Terminar Sessão</a>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/validador-win.js"></script>
+  <script src="js/validador-motor.js"></script>
 </body>
 </html>
+

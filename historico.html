@@ -1,32 +1,104 @@
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
   <meta charset="UTF-8">
-  <title>Histórico de WIN</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Histórico de Validações</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header>
-    <h1>Histórico de WIN</h1>
-    <nav>
-      <a href="validador.html">Validador</a>
-      <a href="login.html">Terminar Sessão</a>
-    </nav>
+    <img src="img/logo_pm.png" alt="Logotipo Polícia Marítima" class="logo">
+    <h1>📜 Histórico de Validações</h1>
   </header>
+
   <main>
-    <h2>Registos anteriores</h2>
-    <table class="win-table">
-      <thead>
-        <tr>
-          <th>Data</th>
-          <th>WIN</th>
-          <th>Resultado</th>
-          <th>Justificação</th>
-        </tr>
-      </thead>
-      <tbody id="historicoBody"></tbody>
-    </table>
+    <div class="tabs">
+      <button onclick="mostrarHistorico('win')">Histórico WIN</button>
+      <button onclick="mostrarHistorico('motor')">Histórico Motor</button>
+    </div>
+
+    <!-- Tabela WIN -->
+    <section id="historicoWin" class="tabela-historico">
+      <h2>Histórico de Números WIN</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Número WIN</th>
+            <th>Resultado</th>
+            <th>Interpretação</th>
+            <th>Foto</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaHistoricoWIN"></tbody>
+      </table>
+    </section>
+
+    <!-- Tabela Motor -->
+    <section id="historicoMotor" class="tabela-historico" style="display:none">
+      <h2>Histórico de Números de Motor</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Marca</th>
+            <th>Número</th>
+            <th>Resultado</th>
+            <th>Interpretação</th>
+            <th>Foto</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaHistoricoMotor"></tbody>
+      </table>
+    </section>
+
+    <div class="historico-btn">
+      <a href="validador.html">⬅️ Voltar ao Validador</a>
+    </div>
   </main>
-  <script src="script.js"></script>
+
+  <footer>
+    <p>&copy; 2025 Polícia Marítima</p>
+  </footer>
+
+  <script>
+    function mostrarHistorico(tipo) {
+      document.getElementById('historicoWin').style.display = tipo === 'win' ? 'block' : 'none';
+      document.getElementById('historicoMotor').style.display = tipo === 'motor' ? 'block' : 'none';
+    }
+
+    // Preencher histórico WIN
+    const historicoWIN = JSON.parse(localStorage.getItem("historicoWIN")) || [];
+    const tabelaWIN = document.getElementById("tabelaHistoricoWIN");
+    historicoWIN.forEach(registo => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${registo.data}</td>
+        <td>${registo.numero}</td>
+        <td>${registo.resultado}</td>
+        <td>${registo.interpretacao}</td>
+        <td>${registo.foto || '(reservado)'}</td>
+      `;
+      tabelaWIN.appendChild(row);
+    });
+
+    // Preencher histórico MOTOR
+    const historicoMotor = JSON.parse(localStorage.getItem("historicoMotor")) || [];
+    const tabelaMotor = document.getElementById("tabelaHistoricoMotor");
+    historicoMotor.forEach(registo => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${registo.data}</td>
+        <td>${registo.marca}</td>
+        <td>${registo.numero}</td>
+        <td>${registo.resultado}</td>
+        <td>${registo.interpretacao}</td>
+        <td>${registo.foto || '(reservado)'}</td>
+      `;
+      tabelaMotor.appendChild(row);
+    });
+  </script>
 </body>
 </html>
