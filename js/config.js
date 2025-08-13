@@ -1,0 +1,1 @@
+const NAV={BUILD:"NAV-PREMIUM 2.1 STAR FALLBACK",STORAGE:{SESSION:"nav_session",WIN_HISTORY:"winHistory",MOTOR_HISTORY:"motorHistory"},THEME_KEY:"nav_theme"};

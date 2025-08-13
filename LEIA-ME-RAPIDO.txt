@@ -1,0 +1,9 @@
+NAV-PREMIUM 2.1 STAR FALLBACK
+
+Como abrir:
+1) Abrir index.html (não abrir validador.html direto).
+2) Login: admin / Admin2025.
+3) Tema: ícone ☀️/🌙 no topo (preferência guardada).
+4) Históricos: miniaturas de fotos + Exportar CSV.
+
+Notas: Suzuki/Mercury não estão incluídas ainda (planeado para futuro).

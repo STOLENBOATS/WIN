@@ -1,130 +1,40 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login - WIN Validator</title>
-  <link rel="stylesheet" href="css/style.css" />
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      margin: 0;
-      padding: 0;
-      position: relative;
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      padding: 10px 20px;
-      background-color: #003366;
-    }
-
-    header img {
-      height: 50px;
-    }
-
-    .watermark {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 0.05;
-      z-index: 0;
-      max-width: 60%;
-    }
-
-    .login-container {
-      position: relative;
-      z-index: 1;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 40px;
-      border-radius: 10px;
-      width: 300px;
-      margin: 100px auto;
-      box-shadow: 0px 0px 10px #ccc;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    label {
-      font-weight: bold;
-    }
-
-    input[type="text"], input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #003366;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #005599;
-    }
-
-    .welcome-msg {
-      text-align: center;
-      margin-top: 20px;
-      color: #003366;
-      font-size: 14px;
-    }
-  </style>
-</head>
-<body>
-  <!-- Header com logotipo -->
-  <header>
-    <img src="img/logo_pm.png" alt="Logotipo Polícia Marítima" />
-  </header>
-
-  <!-- Marca de água -->
-  <img src="img/logo_pm.png" alt="Marca de água Polícia Marítima" class="watermark" />
-
-  <!-- Formulário de Login -->
-  <div class="login-container">
-    <h2>Validador Marítimo</h2>
-    <form id="loginForm" onsubmit="return validateLogin()">
-      <label for="username">Utilizador:</label>
-      <input type="text" id="username" name="username" required />
-
-      <label for="password">Palavra-passe:</label>
-      <input type="password" id="password" name="password" required />
-
-      <button type="submit">Entrar</button>
+<!doctype html>
+<html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NAV — Login</title>
+<link rel="stylesheet" href="css/styles.css">
+<style id="fallback-min">
+ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#0b1220;color:#e6eefc;margin:0}
+ .app-header{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-bottom:1px solid #223251;background:rgba(255,255,255,.02)}
+ .brand{display:flex;align-items:center;gap:12px}.pm-logo{width:36px;height:36px;border-radius:50%}
+ .container{max-width:680px;margin:0 auto;padding:16px}.card{background:#131c2f;border:1px solid #223251;border-radius:14px;padding:16px}
+ label{display:block;font-weight:600;margin-bottom:6px} input{width:100%;padding:10px 12px;border-radius:10px;border:1px solid #223251;background:#0e172b;color:#e6eefc}
+ .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;border:1px solid #223251;background:#2b87ff;color:#fff;font-weight:700}.small{font-size:12px;color:#a8b3c7}
+</style>
+</head><body>
+<header class="app-header">
+  <div class="brand"><img src="img/logo-pm.png" class="pm-logo" alt="PM"><div class="title-wrap"><div class="brand-title">NAV — Acesso / Access</div><div class="brand-subtitle">Diretor / Agente · Director / Officer</div></div></div>
+  <div class="header-right"><button id="themeToggle" class="theme-btn"><span id="themeIcon">☀️</span></button></div>
+</header>
+<main class="container">
+  <section class="card">
+    <form id="loginForm" class="grid">
+      <div><label>Utilizador<div class="en">Username</div></label><input id="user" required placeholder="admin"></div>
+      <div><label>Password<div class="en">Password</div></label><input id="pass" type="password" required placeholder="Admin2025"></div>
+      <div><button class="btn primary" type="submit">Entrar / Sign in</button></div>
+      <p class="small">Credenciais / Credentials: <strong>admin / Admin2025</strong></p>
     </form>
-    <div class="welcome-msg">Bem-vindo ao sistema de validação marítima</div>
-  </div>
-
-  <script>
-    function validateLogin() {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
-
-      if (username === 'admin' && password === 'Admin2025') {
-        window.location.href = 'validador.html';
-        return false;
-      } else {
-        alert('Credenciais inválidas. Tente novamente.');
-        return false;
-      }
-    }
-  </script>
-</body>
-</html>
+  </section>
+</main>
+<footer class="app-footer"><div id="footerDynamic"></div><div></div></footer>
+<script src="js/config.js"></script><script src="js/app.js"></script>
+<script>
+document.getElementById('loginForm').addEventListener('submit',(e)=>{
+  e.preventDefault();
+  const u=document.getElementById('user').value.trim();
+  const p=document.getElementById('pass').value;
+  if(u==='admin' && p==='Admin2025'){ sessionStorage.setItem(NAV.STORAGE.SESSION,'ok'); location.href='validador.html'; }
+  else{ alert('Credenciais inválidas / Invalid credentials'); }
+});
+</script>
+</body></html>

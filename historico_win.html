@@ -1,134 +1,29 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Histórico WIN</title>
-  <link rel="stylesheet" href="css/style.css" />
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      position: relative;
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      background-color: #003366;
-      padding: 10px 20px;
-    }
-
-    header img {
-      height: 50px;
-    }
-
-    .watermark {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      opacity: 0.05;
-      max-width: 60%;
-      z-index: 0;
-    }
-
-    .container {
-      position: relative;
-      z-index: 1;
-      padding: 30px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    h1 {
-      color: #003366;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background-color: #fff;
-    }
-
-    th, td {
-      padding: 10px;
-      border: 1px solid #ccc;
-      text-align: left;
-    }
-
-    th {
-      background-color: #003366;
-      color: white;
-    }
-
-    .footer-buttons {
-      margin-top: 30px;
-    }
-
-    .footer-buttons a {
-      margin-right: 10px;
-      text-decoration: none;
-      background-color: #ccc;
-      padding: 8px 12px;
-      border-radius: 5px;
-      color: #003366;
-      font-weight: bold;
-    }
-
-    .footer-buttons a:hover {
-      background-color: #bbb;
-    }
-  </style>
-</head>
-<body>
-  <!-- Cabeçalho com logotipo -->
-  <header>
-    <img src="img/logo_pm.png" alt="Logotipo Polícia Marítima">
-  </header>
-
-  <!-- Marca de água -->
-  <img src="img/logo_pm.png" alt="Marca de água Polícia Marítima" class="watermark" />
-
-  <div class="container">
-    <h1>📜 Histórico de Validações WIN</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Data</th>
-          <th>Número WIN</th>
-          <th>Resultado</th>
-          <th>Interpretação</th>
-        </tr>
-      </thead>
-      <tbody id="tabelaHistoricoWIN">
-        <!-- Registos inseridos via JavaScript -->
-      </tbody>
-    </table>
-
-    <div class="footer-buttons">
-      <a href="validador.html">⬅️ Voltar ao Validador</a>
-      <a href="login.html">🔒 Terminar Sessão</a>
-    </div>
+<!doctype html>
+<html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NAV — Histórico WIN</title>
+<link rel="stylesheet" href="css/styles.css">
+<script>if(sessionStorage.getItem('nav_session')!=='ok'){alert('Sessão expirada. Faça login.');location.replace('login.html');}</script>
+</head><body>
+<header class="app-header">
+  <div class="brand"><img src="img/logo-pm.png" class="pm-logo" alt="PM"><div class="title-wrap"><div class="brand-title">Histórico WIN / WIN History</div><div class="brand-subtitle">Registos recentes / Recent records</div></div></div>
+  <div class="header-right">
+    <a class="btn" href="validador.html">← Validador / Validator</a>
+    <button id="themeToggle" class="theme-btn"><span id="themeIcon">☀️</span></button>
   </div>
-
-  <script>
-    const historico = JSON.parse(localStorage.getItem("historicoWIN")) || [];
-    const tabela = document.getElementById("tabelaHistoricoWIN");
-
-    historico.forEach(registo => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td>${registo.data}</td>
-        <td>${registo.numero}</td>
-        <td>${registo.resultado}</td>
-        <td>${registo.interpretacao}</td>
-      `;
-      tabela.appendChild(row);
-    });
-  </script>
-</body>
-</html>
+</header>
+<main class="container">
+  <section class="card">
+    <button id="exportWinCsv" class="btn">Exportar CSV / Export CSV</button>
+    <div class="table-wrap">
+      <table id="tabelaWin">
+        <thead><tr>
+          <th>Data / Date</th><th>WIN</th><th>Resultado / Result</th><th>Justificação / Reason</th><th>Foto / Photo (nome)</th><th>Miniatura / Thumbnail</th>
+        </tr></thead><tbody></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<footer class="app-footer"><div id="footerDynamic"></div><div></div></footer>
+<script src="js/config.js"></script><script src="js/app.js"></script><script src="js/utils.js"></script><script src="js/historico-win.js"></script>
+</body></html>
