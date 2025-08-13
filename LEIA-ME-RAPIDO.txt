@@ -1,9 +1,12 @@
-NAV-PREMIUM 2.1 STAR FALLBACK
+N.A.V — Nautical Application Verifier (2.2.2 FALLBACK)
+
+Novidades:
+- Validador de Motores com "Pesquisa técnica" (modelo, potência, cc, ano, origem) + campos por marca.
+- Página Forense com TODAS as marcas visíveis (índice por âncora, sem abas).
 
 Como abrir:
-1) Abrir index.html (não abrir validador.html direto).
-2) Login: admin / Admin2025.
-3) Tema: ícone ☀️/🌙 no topo (preferência guardada).
-4) Históricos: miniaturas de fotos + Exportar CSV.
+1) index.html → login (admin / Admin2025)
+2) Validador: testar pesquisa + série por marca; anexar foto para ver miniatura no Histórico.
+3) Forense: usar índice para saltar para cada marca e testar upload Original/Falso.
 
-Notas: Suzuki/Mercury não estão incluídas ainda (planeado para futuro).
+Modo dia/noite: botão ☀️/🌙 no topo (preferência guardada).

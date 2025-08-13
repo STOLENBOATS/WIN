@@ -51,10 +51,8 @@
     const info = interpretWIN(win);
     if(!info.valid){ out.innerHTML = '<span class="badge bad">Inválido</span> '+info.reason; table.innerHTML=''; }
     else { out.innerHTML = '<span class="badge good">Válido</span> Estrutura conforme regras básicas.'; renderInterpretation(info); }
-    // Photo (optional)
     let photoName='', photoData='';
     if (file && file.files && file.files[0]){ photoName=file.files[0].name; try{ photoData = await readFileAsDataURL(file.files[0]); }catch(e){} }
-    // Save
     const rec = {date:new Date().toISOString(), win, valid:info.valid, reason:info.reason || (info.valid?'OK':''), photoName, photoData};
     const arr = loadFromLS(NAV.STORAGE.WIN_HISTORY); arr.unshift(rec); saveToLS(NAV.STORAGE.WIN_HISTORY, arr);
   });

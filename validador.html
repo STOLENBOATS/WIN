@@ -1,20 +1,28 @@
 <!doctype html>
 <html lang="pt"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NAV — Validador</title>
+<title>N.A.V — Validador</title>
 <link rel="stylesheet" href="css/styles.css">
 <script>if(sessionStorage.getItem('nav_session')!=='ok'){alert('Sessão expirada. Faça login.');location.replace('login.html');}</script>
 </head><body>
+
 <header class="app-header">
-  <div class="brand"><img src="img/logo-pm.png" class="pm-logo" alt="PM">
-    <div class="title-wrap"><div class="brand-title">NAV — Validador WIN & Motor</div><div class="brand-subtitle">Estrutura interpretativa · PT/EN</div></div>
+  <div class="brand">
+    <img src="img/logo-nav.png" class="logo" alt="NAV">
+    <div class="title-wrap">
+      <div class="brand-title">N.A.V — Nautical Application Verifier</div>
+      <div class="brand-subtitle">Maritime Identification • PT/EN</div>
+    </div>
   </div>
-  <div class="header-right">
-    <a class="btn" href="historico_win.html">Histórico WIN / WIN History</a>
-    <a class="btn" href="historico_motor.html">Histórico Motor / Engine History</a>
+  <div class="header-actions">
+    <a class="btn" href="validador.html">Validador</a>
+    <a class="btn" href="forense.html">Forense</a>
+    <a class="btn" href="historico_win.html">Histórico WIN</a>
+    <a class="btn" href="historico_motor.html">Histórico Motor</a>
     <button id="themeToggle" class="theme-btn"><span id="themeIcon">☀️</span></button>
   </div>
 </header>
+
 <main class="container">
   <div class="grid grid-2">
     <section class="card">
@@ -33,21 +41,39 @@
           <tbody id="interpWinBody"></tbody>
         </table>
       </div>
-      <p class="small">Nota / Note: anos podem mapear para 19xx ou 20xx conforme o contexto.</p>
     </section>
 
     <section class="card">
       <h2>Validador Motor<div class="small">Engine Serial Validator</div></h2>
-      <form id="formMotor">
-        <label>Marca<div class="en">Brand</div></label>
-        <select id="brand"><option>Yamaha</option><option>Honda</option></select>
-        <label>Número de Série (S/N)<div class="en">Serial Number</div></label>
-        <input id="sn" maxlength="40" placeholder="Ex.: 6ML N 1005843">
+      <form id="formMotor" class="grid">
+        <div><label>Marca<div class="en">Brand</div></label>
+          <select id="brand">
+            <option>Yamaha</option><option>Honda</option><option>Suzuki</option><option>Tohatsu</option>
+            <option>Mercury</option><option>MerCruiser</option><option>Volvo Penta</option><option>Yanmar</option>
+            <option>Evinrude/Johnson</option>
+          </select>
+        </div>
+
+        <div class="hr"></div>
+        <h3>Pesquisa técnica / Technical search</h3>
+        <div class="grid grid-3">
+          <div><label>Modelo<div class="en">Model</div></label><input id="srch_model" placeholder="ex.: DF140A / BF150A / F350NSA"></div>
+          <div><label>Potência (hp)<div class="en">Power (hp)</div></label><input id="srch_power" placeholder="ex.: 150"></div>
+          <div><label>Cilindrada (cc)<div class="en">Displacement (cc)</div></label><input id="srch_disp" placeholder="ex.: 2394"></div>
+          <div><label>Ano<div class="en">Year</div></label><input id="srch_year" placeholder="ex.: 2019"></div>
+          <div><label>Origem<div class="en">Origin</div></label><input id="srch_origin" placeholder="ex.: JP / US / TH / CN"></div>
+        </div>
+
+        <div class="hr"></div>
+        <h3>Identificação de série / Serial identification</h3>
+        <div id="brandDynamic" class="grid"></div>
+        <div id="brandHint" class="small" style="margin-top:6px;"></div>
+        <div id="brandNote" class="small" style="margin-top:6px;"></div>
+
         <label class="small">Foto opcional / Optional photo</label>
         <input type="file" id="motorPhoto" accept="image/*">
         <div style="margin-top:10px;"><button class="btn primary" type="submit">Validar Motor / Validate Engine</button></div>
       </form>
-      <div id="brandFields" class="small" style="margin-top:6px;"></div>
       <div id="motorOut" style="margin-top:10px;"></div>
     </section>
   </div>

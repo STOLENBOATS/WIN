@@ -1,5 +1,4 @@
 (function(){
-  // Theme init
   const saved = localStorage.getItem(NAV.THEME_KEY);
   if(saved==='light'){ document.documentElement.classList.add('light'); }
   const footer = document.getElementById('footerDynamic');

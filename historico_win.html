@@ -1,26 +1,35 @@
 <!doctype html>
 <html lang="pt"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NAV — Histórico WIN</title>
+<title>N.A.V — Histórico WIN</title>
 <link rel="stylesheet" href="css/styles.css">
 <script>if(sessionStorage.getItem('nav_session')!=='ok'){alert('Sessão expirada. Faça login.');location.replace('login.html');}</script>
 </head><body>
+
 <header class="app-header">
-  <div class="brand"><img src="img/logo-pm.png" class="pm-logo" alt="PM"><div class="title-wrap"><div class="brand-title">Histórico WIN / WIN History</div><div class="brand-subtitle">Registos recentes / Recent records</div></div></div>
-  <div class="header-right">
-    <a class="btn" href="validador.html">← Validador / Validator</a>
+  <div class="brand">
+    <img src="img/logo-nav.png" class="logo" alt="NAV">
+    <div class="title-wrap">
+      <div class="brand-title">N.A.V — Nautical Application Verifier</div>
+      <div class="brand-subtitle">Maritime Identification • PT/EN</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <a class="btn" href="validador.html">Validador</a>
+    <a class="btn" href="forense.html">Forense</a>
+    <a class="btn" href="historico_win.html">Histórico WIN</a>
+    <a class="btn" href="historico_motor.html">Histórico Motor</a>
     <button id="themeToggle" class="theme-btn"><span id="themeIcon">☀️</span></button>
   </div>
 </header>
+
 <main class="container">
   <section class="card">
     <button id="exportWinCsv" class="btn">Exportar CSV / Export CSV</button>
     <div class="table-wrap">
-      <table id="tabelaWin">
-        <thead><tr>
-          <th>Data / Date</th><th>WIN</th><th>Resultado / Result</th><th>Justificação / Reason</th><th>Foto / Photo (nome)</th><th>Miniatura / Thumbnail</th>
-        </tr></thead><tbody></tbody>
-      </table>
+      <table id="tabelaWin"><thead><tr>
+        <th>Data / Date</th><th>WIN</th><th>Resultado / Result</th><th>Justificação / Reason</th><th>Foto / Photo (nome)</th><th>Miniatura / Thumbnail</th>
+      </tr></thead><tbody></tbody></table>
     </div>
   </section>
 </main>
